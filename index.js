@@ -6,12 +6,12 @@ const detail = document.querySelector(".detail");
 
 // Las direcciones (URLs):
 const API_URL = "https://api.restcountries.com/countries/v5";
-const API_KEY = "MI_API_KEY"; // solo para pruebas, borrar apikey al terminar xd
+const API_KEY = "rc_live_14239569407b43b597ea52b72a6976c0"; // solo para pruebas
 const FIELDS =
   "names.common,flag.url_svg,capitals,population,region,subregion,timezones";
 
 const WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
-const WEATHER_KEY = "MI_API_KEY"; // solo para pruebas, borrar apikey al terminar xd
+const WEATHER_KEY = "83fd7778db264fe6bb0befeffafa8fbb"; // solo para pruebas
 
 let countries = [];
 const weatherCache = {};
