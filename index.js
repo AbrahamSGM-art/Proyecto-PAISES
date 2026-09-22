@@ -4,17 +4,19 @@ const message = document.querySelector(".message");
 const cardsList = document.querySelector(".cards-list");
 const detail = document.querySelector(".detail");
 
+// Las direcciones (URLs):
 const API_URL = "https://api.restcountries.com/countries/v5";
-const API_KEY = "MI_API_KEY"; // solo para pruebas, no la dejar al terminar
+const API_KEY = "TU_API_KEY"; // solo para pruebas, borrar apikey al terminar xd
 const FIELDS =
   "names.common,flag.url_svg,capitals,population,region,subregion,timezones";
 
 const WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
-const WEATHER_KEY = "MI_API_KEY"; // solo para pruebas, no la dejar al terminar
+const WEATHER_KEY = "TU_API_KEY"; // solo para pruebas, borrar apikey al terminar xd
 
 let countries = [];
 const weatherCache = {};
 
+// funcion para descargar los paises:
 const getCountries = async () => {
   try {
     const response = await fetch(
@@ -34,6 +36,8 @@ const getCountries = async () => {
 };
 
 getCountries();
+
+// Obtener clima:
 
 const getWeather = async (country) => {
   const name = country.names.common;
@@ -65,6 +69,8 @@ const getWeather = async (country) => {
   }
 };
 
+//Muestra el clima en los contenedores:
+
 const showWeather = async (country, weatherBar) => {
   const weather = await getWeather(country);
 
@@ -88,6 +94,8 @@ const showWeather = async (country, weatherBar) => {
   `;
 };
 
+// Limpia los mensajes en pantalla:
+
 const clearResults = () => {
   message.textContent = "";
   cardsList.innerHTML = "";
@@ -98,6 +106,8 @@ const showMessage = (text) => {
   clearResults();
   message.textContent = text;
 };
+
+//Renderizado:
 
 const showCards = (countriesToShow) => {
   clearResults();
@@ -113,6 +123,7 @@ const showCards = (countriesToShow) => {
   });
 };
 
+// Muestra Detalles de cada pais.:
 const showDetail = (country) => {
   clearResults();
 
@@ -143,6 +154,8 @@ const showDetail = (country) => {
   showWeather(country, weatherBar);
 };
 
+//Interacciones
+
 searchInput.addEventListener("input", (e) => {
   const searchTerm = e.target.value.trim().toLowerCase();
 
@@ -153,13 +166,15 @@ searchInput.addEventListener("input", (e) => {
     return;
   }
 
+  //Parte de Filtrado
+
   const filteredCountries = countries.filter((country) => {
     const countryName = country.names.common.toLowerCase();
     return countryName.includes(searchTerm);
   });
 
   if (filteredCountries.length === 0) {
-    showMessage("País no encontrado");
+    showMessage("País no disponible por el momento.");
   } else if (filteredCountries.length === 1) {
     showDetail(filteredCountries[0]);
   } else if (filteredCountries.length <= 10) {
