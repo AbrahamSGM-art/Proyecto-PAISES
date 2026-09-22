@@ -6,12 +6,12 @@ const detail = document.querySelector(".detail");
 
 // Las direcciones (URLs):
 const API_URL = "https://api.restcountries.com/countries/v5";
-const API_KEY = "rc_live_93677eaaaa6d4624b5434643cc0455ad"; // solo para pruebas, borrar apikey al terminar xd
+const API_KEY = "MI_API_KEY"; // solo para pruebas, borrar apikey al terminar xd
 const FIELDS =
   "names.common,flag.url_svg,capitals,population,region,subregion,timezones";
 
 const WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
-const WEATHER_KEY = "ac1bfb18c320694f39563cbea3db353e"; // solo para pruebas, borrar apikey al terminar xd
+const WEATHER_KEY = "MI_API_KEY"; // solo para pruebas, borrar apikey al terminar xd
 
 let countries = [];
 const weatherCache = {};
@@ -169,8 +169,8 @@ searchInput.addEventListener("input", (e) => {
   //Parte de Filtrado
 
   const filteredCountries = countries.filter((country) => {
-    const countryName = country.names.common.toLowerCase();
-    return countryName.includes(searchTerm);
+    const countryName = country.names.common.trim().toLowerCase();
+    return countryName.startsWith(searchTerm);
   });
 
   if (filteredCountries.length === 0) {
